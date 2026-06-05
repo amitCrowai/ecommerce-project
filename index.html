@@ -15,7 +15,7 @@
     <link rel="icon" href="img/core-img/favicon.ico">
 
   <script>
-    window.__crowai_consent_mode = true;
+    window.__crowai_consent_mode = localStorage.getItem('__con') === '1';
     window.__crowai_consent_block_mode = localStorage.getItem('__cmode') || 'complete';
   </script>
 

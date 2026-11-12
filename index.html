@@ -28,22 +28,26 @@
 
     <!-- growth book-->
 
-    <script>
+<!-- 1. Tell GrowthBook to tag Clarity when a visitor enters a test.
+     Must come BEFORE the GrowthBook script. -->
+<script>
   window.growthbook_config = window.growthbook_config || {};
   window.growthbook_config.trackingCallback = function (experiment, result) {
+    console.log("Viewed Experiment", experiment.key, result.key);
     if (window.clarity) {
-      window.clarity("set", experiment.key, result.key);
+      window.clarity("set", experiment.key, String(result.key));
     }
   };
 </script>
 
-<!-- 3. GrowthBook script tag SDK. Put your own client key. -->
+<!-- 2. GrowthBook script, from your SDK connection page -->
 <script async
+  data-api-host="https://cdn.growthbook.io"
   data-client-key="sdk-iAa0EAj4HvL4hGgn"
-  src="https://cdn.jsdelivr.net/npm/@growthbook/growthbook/dist/bundles/auto.min.js">
-</script>
+  src="https://cdn.jsdelivr.net/npm/@growthbook/growthbook/dist/bundles/auto.min.js"
+></script>
 
-<!-- 4. Read the flag and change the headline.
+<!-- 3. Read the flag and change the headline.
      Reading the flag is what puts the visitor into the test. -->
 <script>
   window.growthbook_queue = window.growthbook_queue || [];

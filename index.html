@@ -24,6 +24,44 @@
     })(window, document, "clarity", "script", "zcflbyqg7l");
 </script>
 
+
+
+    <!-- growth book-->
+
+    <script>
+  window.growthbook_config = window.growthbook_config || {};
+  window.growthbook_config.trackingCallback = function (experiment, result) {
+    if (window.clarity) {
+      window.clarity("set", experiment.key, result.key);
+    }
+  };
+</script>
+
+<!-- 3. GrowthBook script tag SDK. Put your own client key. -->
+<script async
+  data-client-key="sdk-iAa0EAj4HvL4hGgn"
+  src="https://cdn.jsdelivr.net/npm/@growthbook/growthbook/dist/bundles/auto.min.js">
+</script>
+
+<!-- 4. Read the flag and change the headline.
+     Reading the flag is what puts the visitor into the test. -->
+<script>
+  window.growthbook_queue = window.growthbook_queue || [];
+  window.growthbook_queue.push(function (gb) {
+    function apply() {
+      var v = gb.getFeatureValue("hero-test", "control");
+      var h = document.getElementById("headline");
+      if (h) h.textContent = v === "new"
+        ? "Free delivery on every order"
+        : "Summer linen collection";
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", apply);
+    } else { apply(); }
+    document.addEventListener("growthbookdata", apply);
+  });
+</script>
+
     
 
   <!-- <script>
